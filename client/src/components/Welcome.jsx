@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 
+import { SiEthereum } from "react-icons/si";
+import { BsInfoCircle } from "react-icons/bs";
 import { TransactionContext } from "../context/TransactionContext";
 import { shortenAddress } from "../utils/shortenAddress";
-
+import Services from "./Services";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
   <input
     placeholder={placeholder}
@@ -61,7 +63,7 @@ const products = [
 ];
 
 const Welcome = () => {
-  const { currentAccount, connectWallet, handleChange, sendTransaction } =
+  const { currentAccount, connectWallet, sendTransaction } =
     useContext(TransactionContext);
 
   const [cart, setCart] = useState([]);
@@ -87,7 +89,8 @@ const Welcome = () => {
   const removeFromCart = (productId) => {
     setCart(cart.filter((item) => item.id !== productId));
   };
-
+  const companyCommonStyles =
+    "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-800 text-sm font-bold text-black";
   const totalItemsInCart = cart.reduce(
     (total, item) => total + item.quantity,
     0
@@ -115,125 +118,147 @@ const Welcome = () => {
   };
 
   return (
-    <div className="flex w-full justify-center items-center">
-      <div className=" mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
-          {!currentAccount && (
-            <button
-              type="button"
-              onClick={connectWallet}
-              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
-            >
-              <AiFillPlayCircle className="text-white mr-2" />
-              <p className="text-white text-base font-semibold">
-                Connect Wallet
-              </p>
-            </button>
-          )}
-        </div>
+    <div className="flex justify-center items-center">
+      <div className=" items-start justify-between  py-12 ">
+        <div className=" mx-auto max-w-7xl grid md:grid-cols-2 grid-cols-1 md:px-10 md:py-10">
+          <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
+            <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
+              Send Crypto <br /> across the world
+            </h1>
 
-        <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
-          <div className="p-3 flex justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5  ">
-            <div className="flex justify-between flex-col w-full h-full">
-              <div>
-                <p className="text-white font-light text-sm">
-                  {" "}
-                  Welcome {shortenAddress(currentAccount)}
+            <p className="mt-4 text-xl text-gray-500">
+              This year, our new summer collection will shelter you from the
+              harsh elements of a world that doesn't care if you live or die.
+            </p>
+            {!currentAccount && (
+              <button
+                type="button"
+                onClick={connectWallet}
+                className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+              >
+                <AiFillPlayCircle className="text-white mr-2" />
+                <p className="text-white text-base font-semibold">
+                  Connect Wallet
                 </p>
-                <p className="text-white font-semibold text-lg mt-1">
-                  Ethereum
-                </p>
+              </button>
+            )}
+          </div>
+
+          <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+            <div className="p-3 flex justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card .white-glassmorphism ">
+              <div className="flex justify-between flex-col w-full h-full">
+                <div className="flex justify-between items-start">
+                  <div className="w-10 h-10 rounded-full border-2 border-black flex justify-center items-center">
+                    <SiEthereum fontSize={21} color="#000" />
+                  </div>
+                  <BsInfoCircle fontSize={17} color="#000" />
+                </div>
+                <div>
+                  <p className="text-black font-light text-md">
+                    {" "}
+                    Welcome {shortenAddress(currentAccount)}
+                  </p>
+                  <p className="text-black font-semibold text-lg mt-1">
+                    Ethereum
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          {/* <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-            <Input
-              placeholder="Amount (ETH)"
-              name="amount"
-              type="number"
-              handleChange={handleChange}
-            />
+            {/* <div className="grid sm:grid-cols-2 grid-cols-2 w-full mt-10">
+              <div className={`rounded-tl-2xl ${companyCommonStyles}`}>
+                React Js
+              </div>
 
-            <div className="h-[1px] w-full bg-gray-400 my-2" />
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-            >
-              Send now
-            </button>
-          </div> */}
+              <div className={`sm:rounded-tr-2xl ${companyCommonStyles}`}>
+                Tailwind CSS
+              </div>
+              <div className={`sm:rounded-bl-2xl ${companyCommonStyles}`}>
+                Ethereum
+              </div>
+
+              <div className={`rounded-br-2xl ${companyCommonStyles}`}>
+                Blockchain Web 3.0
+              </div>
+            </div> */}
+          </div>
         </div>
+
+        {/* Serives */}
+        <Services />
 
         {/* products */}
-        <div className="bg-white">
-          <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <h2 className="sr-only">Products</h2>
+        <div className="">
+          <div>
+            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+              <h2 className="sr-only">Products</h2>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-              {products.map((product) => (
-                <div key={product.id} className="group">
-                  <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <img
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
-                      className="h-full w-full object-cover object-center group-hover:opacity-75"
-                    />
+              <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                {products.map((product) => (
+                  <div key={product.id} className="group">
+                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                      <img
+                        src={product.imageSrc}
+                        alt={product.imageAlt}
+                        className="h-full w-full object-cover object-center group-hover:opacity-75"
+                      />
+                    </div>
+                    <h3 className="mt-4 text-sm text-gray-700">
+                      {product.name}
+                    </h3>
+                    <p className="mt-1 text-lg font-medium text-gray-900">
+                      {product.price}
+                    </p>
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md"
+                    >
+                      Add to Cart
+                    </button>
                   </div>
-                  <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                  <p className="mt-1 text-lg font-medium text-gray-900">
-                    {product.price}
-                  </p>
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* cart section */}
-        <div className="bg-gray-100 p-8">
-          <h2 className="text-2xl font-bold mb-4">
-            Shopping Cart ({totalItemsInCart} items)
-          </h2>
-          {cart.length === 0 ? (
-            <p>Your cart is empty.</p>
-          ) : (
-            <div>
-              {cart.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b-2 py-2"
-                >
-                  <div>
-                    <p className="font-bold">{item.name}</p>
-                    <p>Price: {item.price}</p>
-                    <p>Quantity: {item.quantity}</p>
-                  </div>
-                  <button
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 hover:underline"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <div className="mt-4 flex justify-around">
-                <p className="font-bold">Total: {totalValueInEthereum} ETH</p>
-                <button
-                  onClick={handleSubmit}
-                  className="mt-2 bg-green-500 text-white px-4 py-2 rounded-md"
-                >
-                  Purchase Now
-                </button>
+                ))}
               </div>
             </div>
-          )}
+          </div>
+
+          {/* cart section */}
+          <div className="p-8">
+            <h2 className="text-2xl font-bold mb-4">
+              Shopping Cart ({totalItemsInCart} items)
+            </h2>
+            {cart.length === 0 ? (
+              <p>Your cart is empty.</p>
+            ) : (
+              <div>
+                {cart.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between border-b-2 py-2"
+                  >
+                    <div>
+                      <p className="font-bold">{item.name}</p>
+                      <p>Price: {item.price}</p>
+                      <p>Quantity: {item.quantity}</p>
+                    </div>
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="text-red-500 hover:underline"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <div className="mt-4 flex justify-around">
+                  <p className="font-bold">Total: {totalValueInEthereum} ETH</p>
+                  <button
+                    onClick={handleSubmit}
+                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-md"
+                  >
+                    Purchase Now
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
