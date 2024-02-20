@@ -80,8 +80,8 @@ body {
 }
 
 .text-gradient2 {
-  background-color: #fff;
-  background-image: radial-gradient(at 14% 36%, rgb(255, 255, 255) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(255, 255, 255) 0, transparent 50%);
+  background-color: #000000;
+  background-image: radial-gradient(at 14% 36%, rgb(54, 10, 232) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(136, 28, 218) 0, transparent 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -202,11 +202,11 @@ const Welcome = () => {
                         className="h-full w-full object-cover object-center group-hover:opacity-75"
                       />
                     </div>
-                    <h3 className="mt-4 text-sm text-gray-700">
+                    <h3 className="mt-4 text-sm text-white font-semibold">
                       {product.name}
                     </h3>
-                    <p className="mt-1 text-lg font-medium text-gray-900">
-                      {product.price}
+                    <p className="mt-1 text-lg font-medium text-gray-300">
+                    Rs.  {product.price}
                     </p>
                     <button
                       onClick={() => addToCart(product)}
@@ -222,7 +222,7 @@ const Welcome = () => {
 
           {/* cart section */}
           <div className="p-8">
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className="text-2xl text-white/80 font-bold mb-4">
               Shopping Cart ({totalItemsInCart} items)
             </h2>
             {cart.length === 0 ? (
@@ -235,23 +235,23 @@ const Welcome = () => {
                     className="flex items-center justify-between border-b-2 py-2"
                   >
                     <div>
-                      <p className="font-bold">{item.name}</p>
-                      <p>Price: {item.price}</p>
-                      <p>Quantity: {item.quantity}</p>
+                      <p className="font-bold text-white">{item.name}</p>
+                      <p className="text-gray-300">Price: {item.price}</p>
+                      <p className="text-gray-300">Quantity: {item.quantity}</p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="text-red-500 hover:underline"
+                      className="text-red-600 hover:underline"
                     >
                       Remove
                     </button>
                   </div>
                 ))}
-                <div className="mt-4 flex justify-around">
-                  <p className="font-bold">Total: {totalValueInEthereum} ETH</p>
+                <div className="mt-4 flex justify-around items-center">
+                  <p className="font-bold text-white">Total: {totalValueInEthereum} ETH</p>
                   <button
                     onClick={handleSubmit}
-                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-md"
+                    className="mt-2 bg-green-500 text-white font-semibold px-4 py-2 rounded-md"
                   >
                     Purchase Now
                   </button>
